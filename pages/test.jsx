@@ -121,12 +121,87 @@ const quizItems = [
     id: "30",
     question: "Prefiero un mismo tipo de ritmo de trabajo cada día.",
   },
-]
+];
+
+const subjects = [
+  {
+    id: '1',
+    subject: 'Matemática',
+    img: 'https://img2.rtve.es/i/?w=1600&i=1386350163529.jpg',
+  },
+  {
+    id: '2',
+    subject: 'Ciencias',
+    img: 'https://www.65ymas.com/uploads/s1/32/63/52/sustancias-quimicas-que-pueden-ser-perjudiciales-para-la-salud.jpeg',
+  },
+  {
+    id: '3',
+    subject: 'Lenguaje',
+    img: 'https://sites.google.com/site/literaturadem/_/rsrc/1375921105275/obras/libros.jpg',
+  },
+  {
+    id: '4',
+    subject: 'Idiomas',
+    img: 'https://whatsup.es/wp-content/uploads/2018/10/istock_000074756305_small.jpg',
+  },
+  {
+    id: '5',
+    subject: 'Ciencias sociales',
+    img: 'https://socialesconcarlos.files.wordpress.com/2019/04/ciencias_sociales2.jpg',
+  },
+  {
+    id: '6',
+    subject: 'Economía',
+    img: 'https://www.xlsemanal.com/wp-content/uploads/sites/3/2020/04/la-economia-tras-la-pandemia-el-futuro-en-cuatro-escenarios.jpg',
+  },
+  {
+    id: '7',
+    subject: 'Educación por el trabajo',
+    img: 'https://www.ugel07.gob.pe/wp-content/uploads/2016/04/IMG_4768.jpg',
+  },
+  {
+    id: '8',
+    subject: 'Computación',
+    img: 'https://iespppomabamba.edu.pe/wp-content/uploads/2019/11/computacion1.jpg',
+  },
+];
 
 const Test = () => {
   return (
-    <div>
+    <div className="test-container">
       <h1>Test</h1>
+      <div className="test__item">
+        <div className="test__item-header">
+          <h2 className="test__item-title">Selecciona 4 materias que te gustaban en el colegio.</h2>
+        </div>
+        <div className="test__item-body">
+          {
+            subjects.map((subject) => {
+              return (
+                <label className="test__item-option-label" htmlFor={`subject-${subject.id}`}>
+                  <input value={subject.id} className="test__item-option" type="checkbox" name="subject" id={`subject-${subject.id}`} hidden/>
+                  <img className="test__item-option-img" src={subject.img} height="100" alt="" />
+                  <span>{subject.subject}</span>
+                </label>
+              );
+            })
+          }
+        </div>
+      </div>
+      {
+        quizItems.map((item) => {
+          return (
+            <div className="test__item">
+              <div className="test__item-header">
+                <h2 className="test__item-title">{item.question}</h2>
+              </div>
+              <div className="test__item-body">
+
+              </div>
+            </div>
+          );
+        })
+      }
     </div>
   );
 };

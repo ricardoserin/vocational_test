@@ -121,7 +121,6 @@ const quizItems = [
     id: "30",
     question: "Prefiero un mismo tipo de ritmo de trabajo cada día.",
   },
-
 ]
 
 const Test = () => {

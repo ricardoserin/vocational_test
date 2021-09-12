@@ -3,22 +3,20 @@ import Link from 'next/link';
 
 const header = () => {
   return (
-    <header className="header">
-      <h1>Test Vocacional - UNT</h1>
-      <nav className="nav-bar">
-        <ul className="nav-bar__ul">
-          <li className="nav-bar__li">
-            <Link href="/">
-              <a className="nav-bar__link">Inicio</a>
-            </Link>
-          </li>
-          <li className="nav-bar__li">
-            <Link href="/test">
-              <a className="nav-bar__link">Test</a>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+    <header>
+       <nav>
+         <Link href="#">
+            <a >Inicio</a>
+         </Link>
+         <Link href="#"> 
+          <a >Test</a>
+         </Link>
+        </nav>
+        <section className="textos-header">
+            <h1>TEST VOCACIONAL UNT</h1>
+            <h2>¿Aún no sabes qué carrera universitaria elegir?</h2>
+        </section>
+      
     </header>
   );
 };

@@ -7,7 +7,7 @@ const Home = () => {
           
         <main>
             <section className="contenedor sobre-nosotros">
-                <h2 className="titulo">Este test es solo para ingenierías</h2>
+                <h2 className="titulo">ESTE TEST ES SOLO PARA INGENIERÍAS</h2>
                 <div className="contenedor-sobre-nosotros">
                     <img src="../img/ilustracion2.png" alt="" class="imagen-about-us"/>
                     <div className="contenido-textos">
@@ -177,7 +177,9 @@ const Home = () => {
                 </div>
             </section>
         </main>
-      
+        <footer> 
+            <h2 class="titulo-final">&copy; DESARROLLADO POR ALUMNOS DE LA UNT</h2>
+        </footer>
     </div>
   );
 };

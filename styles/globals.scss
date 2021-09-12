@@ -8,7 +8,6 @@
   box-sizing: border-box;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -53,7 +52,6 @@ body {
   background-position: right;
 }
 
-
 .titulo {
   color: #642a73;
   font-size: 30px;
@@ -68,9 +66,9 @@ header {
   height: 600px;
   background: #bc4e9c;
 /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, hsla(340, 95%, 50%, 0.459), hsla(317, 45%, 52%, 0.664)), url(../img/portada1.jpg);
+background: -webkit-linear-gradient(to right, hsla(340, 95%, 50%, 0.459), hsla(317, 45%, 52%, 0.664)), url(../public/img/portada1.jpg);
 /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, hsla(10, 21%, 15%, 0.459), hsla(17, 15%, 72%, 0.664)), url(../img/portada1.jpg);
+background: linear-gradient(to right, hsla(10, 21%, 15%, 0.459), hsla(17, 15%, 72%, 0.664)), url(../public/img/portada1.jpg);
 /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 background-size: cover;
   background-attachment: fixed;
@@ -113,7 +111,6 @@ header .textos-header{
   font-weight: 300;
   color:#fff;
 }
-
 
 .wave{
   position: absolute;
@@ -164,7 +161,6 @@ main .sobre-nosotros{
 }
 
 /* Galeria */
-
 
 .portafolio{
   background: #f2f2f2;
@@ -352,7 +348,7 @@ footer{
       width: 44%;
   }
 
-  /* Clientes */
+  /* Integrantes */
 
   .cards{
       flex-direction: column;
@@ -425,43 +421,4 @@ footer{
       width: 95%;
   }
 
-  /* Clients */
-
-  .cards .card{
-      height: 450px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  }
-
-  .cards .card img{
-      width: 90px;
-      height: 90px;
-  }
-
-  /* Footer */
-
-  .contenedor-footer{
-      flex-direction: column;
-      border: none;
-  }
-
-  .content-foo{
-      margin-bottom: 20px;
-      text-align: center;
-  }
-
-  .content-foo h4{
-      border: none;
-  }
-
-  .content-foo p{
-      color: #ccc;
-      border-bottom: 1px solid #f2f2f2;
-      padding-bottom: 20px;
-  }
-
-  .titulo-final{
-      font-size: 20px;
-  }
 }

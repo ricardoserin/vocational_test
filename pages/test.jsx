@@ -188,20 +188,74 @@ const Test = () => {
           }
         </div>
       </div>
-      {
-        quizItems.map((item) => {
-          return (
-            <div className="test__item">
-              <div className="test__item-header">
-                <h2 className="test__item-title">{item.question}</h2>
-              </div>
-              <div className="test__item-body">
-
-              </div>
+      <div className="test__item">
+        <div className="test__item-header">
+          <h2 className="test__item-title">Cuestionario de personalidad</h2>
+        </div>
+        <div className="test__item-body">
+          <div>
+            <div>
+              Leyenda:
+              <ul>
+                <li>ND: Nada de acuerdo</li>
+                <li>PD: Un poco de acuerdo</li>
+                <li>BD: Bastante de acuerdo</li>
+                <li>TD: Totalmente de acuerdo</li>
+              </ul>
             </div>
-          );
-        })
-      }
+            <div>
+              <table className="test__table">
+                <thead className="test__thead">
+                  <tr>
+                    <th className="test__th">N°</th>
+                    <th className="test__th">Pregunta</th>
+                    <th className="test__th test__th-radio">ND (1)</th>
+                    <th className="test__th test__th-radio">PD (2)</th>
+                    <th className="test__th test__th-radio">BD (3)</th>
+                    <th className="test__th test__th-radio">TD (4)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    quizItems.map((item) => {
+                      return (
+                        <tr className="test__row">
+                          <td className="test__td">{item.id}</td>
+                          <td className="test__td">{item.question}</td>
+                          <td className="test__td-radio">
+                            <label className="tooltip" htmlFor={item.id}>
+                              <input className="tooltip" type="radio" name={item.id} id="" />
+                              <span class="tooltiptext">Nada de acuerdo</span>
+                            </label>
+                          </td>
+                          <td className="test__td-radio">
+                            <label className="tooltip" htmlFor={item.id}>
+                              <input className="tooltip" type="radio" name={item.id} id="" />
+                              <span class="tooltiptext">Un poco de acuerdo</span>
+                            </label>
+                          </td>
+                          <td className="test__td-radio">
+                            <label className="tooltip" htmlFor={item.id}>
+                              <input className="tooltip" type="radio" name={item.id} id="" />
+                              <span class="tooltiptext">Nada de acuerdo</span>
+                            </label>
+                          </td>
+                          <td className="test__td-radio">
+                            <label className="tooltip" htmlFor={item.id}>
+                              <input className="tooltip" type="radio" name={item.id} id="" />
+                              <span class="tooltiptext">Totalmente de acuerdo</span>
+                            </label>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

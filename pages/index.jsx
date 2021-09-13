@@ -144,9 +144,12 @@ const Home = () => {
                 </div>
             </section>
         
-            <div className="contenedor-btn">
-                <button className="btn">   INICIAR TEST  </button>
-            </div>    
+            <Link href="/test">
+                <div className="contenedor-btn">
+                    <button className="btn">   INICIAR TEST  </button>
+                </div>   
+             </Link>
+             
 
         
             <section className="about-services">

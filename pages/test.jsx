@@ -250,7 +250,7 @@ const Test = () => {
                         return (
                           <label id={`label-${subject.id}`} key={`label-${subject.id}`} className="test__item-option-label" htmlFor={`subject-${subject.id}`}>
                             <input {...register('subject[]', { required: true })} value={subject.id} className="test__item-option" type="checkbox" name="subject" id={`subject-${subject.id}`} hidden/>
-                            <img className="test__item-option-img" src={subject.img} height="100" alt="" />
+                            <img className="test__item-option-img test__effect" src={subject.img} height="100" alt="" />
                             <span>{subject.subject}</span>
                           </label>
                         );

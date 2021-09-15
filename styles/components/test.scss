@@ -2,7 +2,10 @@
   &-container{
     margin: 0 10%;
   }
-
+  &__effect:hover{
+          transform: translateY(-10px);
+          box-shadow: 0 12px 16px rgba(0, 0, 0, 0.5);
+  }
   &__item{
     display: flex;
     flex-direction: column;
@@ -37,6 +40,7 @@
         margin: 1rem 0;
         cursor: pointer;
         filter: grayscale(100%); 
+        transition: all 0.5s;
       }
       &-label{
         display: flex;

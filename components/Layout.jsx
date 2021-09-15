@@ -3,10 +3,12 @@ import Header from './common/Header';
 
 const Layout = ({ children }) => {
   return(
-    <main className="app">
+    <div className="app">
         <Header />
-        {children}
-    </main>
+        <>
+          {children}
+        </>
+    </div>
   );
 };
 

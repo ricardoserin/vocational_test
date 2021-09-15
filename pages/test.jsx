@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { testHandler } from '../lib/testHandler';
+import AnyChart from 'anychart-react';
 
 const quizItems = [
   {
@@ -166,96 +171,251 @@ const subjects = [
   },
 ];
 
+const group = [
+  {
+    id:1, 
+    description:'Ingeniería de Minas, Ingeniería Metalúrgica'
+  },
+  {
+    id:2, 
+    description:'Ingeniería Agrícola, Ingeniería Agrónoma, Ingeniería Zootecnia'
+  },
+  {
+    id:3, 
+    description:'Ingeniería Industrial , Ingeniería Agroindustrial'
+  },
+  {
+    id:4, 
+    description:'Ingeniería en Estadística'
+  },
+  {
+    id:5, 
+    description:'Ingeniería Mecánica,Ingeniería Mecatrónica, Ingeniería Civil, Ingeniería de Materiales'
+  },
+  {
+    id:6,
+    description:'Ingeniería Informática,Ingeniería de Sistemas'
+  },
+  {
+    id:7, 
+    description:'Ingeniería Química, Ingeniería Ambiental'
+  } 
+];
+
 const Test = () => {
+  const MySwal = withReactContent(Swal)
+  const {handleSubmit, register, errors} = useForm();
+  const [vocation, setVocation] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [vocation]);
+
+  const getVocation = async (data) => {
+    const response = testHandler(data);
+    return response;
+  };
+
+  const onSubmit = async (data) => {
+    if(data.subject.length == 4){
+      setIsLoading(true);
+      console.log({data});
+      const ga = await getVocation(data);
+      setVocation(ga);
+    }
+    else {
+      MySwal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe seleccionar 4 materias.',
+      });
+    }
+  };
+  
   return (
     <div className="test-container">
       <h1>Test</h1>
-      <div className="test__item">
-        <div className="test__item-header">
-          <h2 className="test__item-title">Selecciona 4 materias que te gustaban en el colegio.</h2>
-        </div>
-        <div className="test__item-body">
-          {
-            subjects.map((subject) => {
-              return (
-                <label className="test__item-option-label" htmlFor={`subject-${subject.id}`}>
-                  <input value={subject.id} className="test__item-option" type="checkbox" name="subject" id={`subject-${subject.id}`} hidden/>
-                  <img className="test__item-option-img" src={subject.img} height="100" alt="" />
-                  <span>{subject.subject}</span>
-                </label>
-              );
-            })
-          }
-        </div>
-      </div>
-      <div className="test__item">
-        <div className="test__item-header">
-          <h2 className="test__item-title">Cuestionario de personalidad</h2>
-        </div>
-        <div className="test__item-body">
-          <div>
-            <div>
-              Leyenda:
-              <ul>
-                <li>ND: Nada de acuerdo</li>
-                <li>PD: Un poco de acuerdo</li>
-                <li>BD: Bastante de acuerdo</li>
-                <li>TD: Totalmente de acuerdo</li>
-              </ul>
-            </div>
-            <div>
-              <table className="test__table">
-                <thead className="test__thead">
-                  <tr>
-                    <th className="test__th">N°</th>
-                    <th className="test__th">Pregunta</th>
-                    <th className="test__th test__th-radio">ND (1)</th>
-                    <th className="test__th test__th-radio">PD (2)</th>
-                    <th className="test__th test__th-radio">BD (3)</th>
-                    <th className="test__th test__th-radio">TD (4)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {
-                    quizItems.map((item) => {
-                      return (
-                        <tr className="test__row">
-                          <td className="test__td">{item.id}</td>
-                          <td className="test__td">{item.question}</td>
-                          <td className="test__td-radio">
-                            <label className="tooltip" htmlFor={item.id}>
-                              <input className="tooltip" type="radio" name={item.id} id="" />
-                              <span class="tooltiptext">Nada de acuerdo</span>
-                            </label>
-                          </td>
-                          <td className="test__td-radio">
-                            <label className="tooltip" htmlFor={item.id}>
-                              <input className="tooltip" type="radio" name={item.id} id="" />
-                              <span class="tooltiptext">Un poco de acuerdo</span>
-                            </label>
-                          </td>
-                          <td className="test__td-radio">
-                            <label className="tooltip" htmlFor={item.id}>
-                              <input className="tooltip" type="radio" name={item.id} id="" />
-                              <span class="tooltiptext">Nada de acuerdo</span>
-                            </label>
-                          </td>
-                          <td className="test__td-radio">
-                            <label className="tooltip" htmlFor={item.id}>
-                              <input className="tooltip" type="radio" name={item.id} id="" />
-                              <span class="tooltiptext">Totalmente de acuerdo</span>
-                            </label>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  }
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+        {
+          (!isLoading) ? (
+            (!vocation) ? (
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="test__item">
+                  <div className="test__item-header">
+                    <h2 className="test__item-title">Selecciona 4 materias que te gustaban en el colegio.</h2>
+                  </div>
+                  <div className="test__item-body">
+                    {
+                      subjects.map((subject) => {
+                        return (
+                          <label id={`label-${subject.id}`} key={`label-${subject.id}`} className="test__item-option-label" htmlFor={`subject-${subject.id}`}>
+                            <input {...register('subject[]', { required: true })} value={subject.id} className="test__item-option" type="checkbox" name="subject" id={`subject-${subject.id}`} hidden/>
+                            <img className="test__item-option-img" src={subject.img} height="100" alt="" />
+                            <span>{subject.subject}</span>
+                          </label>
+                        );
+                      })
+                    }
+                  </div>
+                </div>
+                <div className="test__item">
+                  <div className="test__item-header">
+                    <h2 className="test__item-title">Cuestionario de personalidad</h2>
+                  </div>
+                  <div className="test__item-body">
+                    <div>
+                      <div>
+                        Leyenda:
+                        <ul>
+                          <li>ND: Nada de acuerdo</li>
+                          <li>PD: Un poco de acuerdo</li>
+                          <li>BD: Bastante de acuerdo</li>
+                          <li>TD: Totalmente de acuerdo</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <table className="test__table">
+                          <thead className="test__thead">
+                            <tr>
+                              <th className="test__th">N°</th>
+                              <th className="test__th">Pregunta</th>
+                              <th className="test__th test__th-radio">ND (1)</th>
+                              <th className="test__th test__th-radio">PD (2)</th>
+                              <th className="test__th test__th-radio">BD (3)</th>
+                              <th className="test__th test__th-radio">TD (4)</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              quizItems.map((item) => {
+                                return (
+                                  <tr id={`tr-${item.id}`} key={`tr-${item.id}`} className="test__row">
+                                    <td className="test__td">{item.id}</td>
+                                    <td className="test__td">{item.question}</td>
+                                    <td className="test__td-radio">
+                                      <label className="tooltip" htmlFor={item.id}>
+                                        <input {...register(`p${item.id}`, { required: false })} className="tooltip" type="radio" name={`p${item.id}`} id={`ND-${item.id}`} value={0} />
+                                        <span className="tooltiptext">Nada de acuerdo</span>
+                                      </label>
+                                    </td>
+                                    <td className="test__td-radio">
+                                      <label className="tooltip" htmlFor={item.id}>
+                                        <input {...register(`p${item.id}`, { required: false })} className="tooltip" type="radio" name={`p${item.id}`} id={`PD-${item.id}`} value={1} />
+                                        <span className="tooltiptext">Un poco de acuerdo</span>
+                                      </label>
+                                    </td>
+                                    <td className="test__td-radio">
+                                      <label className="tooltip" htmlFor={item.id}>
+                                        <input {...register(`p${item.id}`, { required: false })} className="tooltip" type="radio" name={`p${item.id}`} id={`BD-${item.id}`} value={2} />
+                                        <span className="tooltiptext">Nada de acuerdo</span>
+                                      </label>
+                                    </td>
+                                    <td className="test__td-radio">
+                                      <label className="tooltip" htmlFor={item.id}>
+                                        <input {...register(`p${item.id}`, { required: false })} className="tooltip" type="radio" name={`p${item.id}`} id={`TD-${item.id}`} value={3} />
+                                        <span className="tooltiptext">Totalmente de acuerdo</span>
+                                      </label>
+                                    </td>
+                                  </tr>
+                                );
+                              })
+                            }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="contenedor-btn">
+                    <input type="submit" className="btn" value="ENVIAR"/>              
+                </div>   
+              </form>
+            ) : 
+            (
+              <div class="resultados">
+                <div className="test">
+                  <div className="test__item-header">
+                    <h2 className="test__item-title">Resultados</h2>
+                  </div>
+                  <div className="test__item-body">
+                    <div>
+                      <div className="grafico" id="grafico">
+                        <AnyChart
+                          name="Puntaje"
+                          serie="Puntaje"
+                            labels={true, {fontColor: 'black', fontWeight: 'bold'}}
+                            className="grafico"
+                            type= 'column'
+                            height={500}
+                            yAxis={[0, {enabled: false}]}
+                            xAxis={[0, {
+                              labels: {
+                                fontColor: 'black',
+                                fontWeight: 'bold',
+                              },
+                              fill: "#FFD54F",
+                            }]}
+                            title= 'Column chart'
+                            data={
+                              vocation.personalities.map((p) => {
+                                return [p.name, p.score, {}, {fill: "#FFD54F"}];
+                              })
+                            }
+                            title=""
+                        />
+                      </div>
+                      <div className="test__item">
+                        <div className="test__item-header">
+                          <h2 className="test__item-title">Descripción de personalidad</h2>
+                        </div>
+                        <div className="test__item-body">
+                          <div>
+                            <div className="results-cotainer">
+                              <div className="results__personalities">
+                                <div className="results__personality">
+                                  <span className="results__personality-title">
+                                    {`${vocation.personality1.name}: `} 
+                                  </span>
+                                  {vocation.personality1.description}
+                                </div>
+                                <div className="results__personality">
+                                  <span className="results__personality-title">
+                                    {`${vocation.personality2.name}: `} 
+                                  </span>
+                                  {vocation.personality2.description}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="test__item">
+                        <div className="test__item-header">
+                          <h2 className="test__item-title">El test vocacional le recomienda las siguientes carreras:</h2>
+                        </div>
+                        <div className="test__item-body">
+                          <div>
+                            <h2 className="results__vocation">
+                              {group[vocation.vocation.value - 1].description}
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="contedor-btn">
+                  <input type="submit" className="btn" value="Nuevo Test"/>  
+                </div>
+              </div>
+            )
+          ) : (
+            <div class="spinner"></div>
+          )
+        }
+        <script type="text/javascript" src="./js/core.js"></script>
+        <script type="text/javascript" src="./js/promises.js"></script>
+        <script type="text/javascript" src="./js/lists.js"></script>
     </div>
   );
 };

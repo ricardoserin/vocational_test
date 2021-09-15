@@ -1,6 +1,6 @@
 .test{
   &-container{
-    margin: 0 20%;
+    margin: 0 10%;
   }
 
   &__item{
@@ -26,7 +26,9 @@
     &-option{
       &:checked{
         &~ .test__item-option-img{
-          border: 5px solid green;
+          border: 5px solid steelblue;
+          border-style: outset;
+          filter: grayscale(0%); 
         }
       }
       &-img{
@@ -34,6 +36,7 @@
         border-radius: 1rem;
         margin: 1rem 0;
         cursor: pointer;
+        filter: grayscale(100%); 
       }
       &-label{
         display: flex;
@@ -119,4 +122,48 @@
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #09f;
+
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.results-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.results{
+  &__personality{
+    text-align: justify;
+    margin-bottom: 1rem;
+    &-title{
+      font-weight: bold;
+    }
+  }
+  &__vocation{
+    color: steelblue;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.grafico{
+  height: 500px;
 }

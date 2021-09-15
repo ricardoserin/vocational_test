@@ -1,10 +1,9 @@
 {
   "name": "vocational_test",
   "version": "1.0.0",
-  "dEscription": "Aplicación web de un test vocacional para el curso de SISTEMAS EXPERTOS - UNIVERSIDAD NACIONAL DE TRUJILLO",
-  "main": "index.jsx",
+  "description": "Aplicación web de un test vocacional para el curso de SISTEMAS EXPERTOS - UNIVERSIDAD NACIONAL DE TRUJILLO",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 4000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -13,9 +12,17 @@
   "author": "ricardoserin",
   "license": "",
   "dependencies": {
+    "@hookform/resolvers": "^2.8.0",
+    "anychart-react": "^1.4.1",
+    "file-system": "^2.2.2",
+    "fs": "^0.0.1-security",
     "next": "^11.1.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "sass": "^1.39.2"
+    "react-hook-form": "^7.15.3",
+    "sass": "^1.39.2",
+    "sweetalert2": "^11.1.5",
+    "sweetalert2-react-content": "^4.1.1",
+    "yup": "^0.32.9"
   }
 }

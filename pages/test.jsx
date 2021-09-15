@@ -307,7 +307,7 @@ const Test = () => {
                                     <td className="test__td-radio">
                                       <label className="tooltip" htmlFor={item.id}>
                                         <input {...register(`p${item.id}`, { required: false })} className="tooltip" type="radio" name={`p${item.id}`} id={`BD-${item.id}`} value={2} />
-                                        <span className="tooltiptext">Nada de acuerdo</span>
+                                        <span className="tooltiptext">Bastante de acuerdo</span>
                                       </label>
                                     </td>
                                     <td className="test__td-radio">

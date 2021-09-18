@@ -159,6 +159,10 @@ const Home = () => {
                                 <h3>Llave Vergaray Jose</h3>
                             </div>
                             <div className="servicio-ind">
+                                <img src="img/ilustracion3.svg" alt=""/>
+                                <h3>Polo Reyes Erika</h3>
+                            </div>
+                            <div className="servicio-ind">
                                 <img src="img/ilustracion4.svg" alt=""/>
                                 <h3>Reyes Julca Steven</h3>
                             </div>

@@ -8,15 +8,15 @@ import AnyChart from 'anychart-react';
 const quizItems = [
   {
     id: "1",
-    question: "¿Cuando realizo algún trabajo o tarea me gusta hacerlo de manera original?",
+    question: "¿Soy original para realizar alguna actividad o tarea?",
   },
   {
     id: "2",
-    question: "Soy una persona siempre dispuesta a cooperar con los demás y a participar en actividades sociales.",
+    question: "¿Me gusta cooperar con las demás y ser participativo en actividades sociales?",
   },
   {
     id: "3",
-    question: "Soy capaz de explicar las cosas a los demás con claridad y entusiasmo. Muchas veces logro convencerlos o persuadirlos de mis ideas y puntos de vista.",
+    question: "Explico las cosas con claridad y entusiasmo. Muchas veces logro convencerlos o persuadirlos de mis ideas y puntos de vista.",
   },
   {
     id: "4",
@@ -307,7 +307,7 @@ const Test = () => {
                                     <td className="test__td-radio">
                                       <label className="tooltip" htmlFor={item.id}>
                                         <input {...register(`p${item.id}`, { required: false })} className="tooltip" type="radio" name={`p${item.id}`} id={`BD-${item.id}`} value={2} />
-                                        <span className="tooltiptext">Nada de acuerdo</span>
+                                        <span className="tooltiptext">Bastante de acuerdo</span>
                                       </label>
                                     </td>
                                     <td className="test__td-radio">
@@ -404,9 +404,9 @@ const Test = () => {
                     </div>
                   </div>
                 </div>
-                <div className="contedor-btn">
+                {/* <div className="contedor-btn">
                   <input type="submit" className="btn" value="Nuevo Test"/>  
-                </div>
+                </div> */}
               </div>
             )
           ) : (
